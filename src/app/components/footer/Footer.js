@@ -8,10 +8,10 @@ export default function Footer() {
                 <div className="flex flex-col items-center justify-center gap-3 pb-4 border-b border-gray-800">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-9 h-9 bg-green-500 rounded-lg flex items-center justify-center shadow-lg">
-                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
+                        <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                            <figure className="">
+                                <img src="assets/images/dragan.png" alt="Ferix Software Logo" className="w-10 h-10" />
+                            </figure>
                         </div>
                         <span className="text-base sm:text-xl font-bold text-white">Ferixsoftware Pro</span>
                     </Link>

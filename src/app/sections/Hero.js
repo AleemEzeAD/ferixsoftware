@@ -12,7 +12,7 @@ const softwareData = {
     titleSecond: "Software Pro",
     tagline: "Master the markets with real-time AI signals and precise analysis.",
     description:
-        "Anzal NextCandle Pro is a powerful, professional trading dashboard that provides accurate market signals, live candle analysis, and seamless integration with your favorite platforms including Windows, macOS, and Web.",
+        "Ferix Software Pro is a powerful, professional trading dashboard that provides accurate market signals, live candle analysis, and seamless integration with your favorite platforms including Windows, macOS, and Web.",
     features: [
         { icon: TrendingUp, label: "Real-time", subLabel: "Signals" },
         { icon: Crosshair, label: "High", subLabel: "Accuracy" },

@@ -27,7 +27,7 @@ export const metadata = {
     'Live Trading Signals'
   ],
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.png',
   },
   openGraph: {
     title: 'Ferix Software - Trading Dashboard',

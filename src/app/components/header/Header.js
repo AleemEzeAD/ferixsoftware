@@ -103,11 +103,9 @@ export default function Header() {
 
                     {/* Logo Area */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-8 sm:w-10 h-8 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
+                        <figure className="">
+                            <img src="assets/images/dragan.png" alt="Ferix Software Logo" className="w-10 h-10" />
+                        </figure>
                         <div className="text-base leading-4 sm:text-xl sm:leading-5 font-bold text-gray-800">
                             Ferix <div>
                                 <span className="text-green-600">Software</span> Pro
@@ -194,11 +192,9 @@ export default function Header() {
                 {/* Sidebar Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100">
                     <Link href="/" className="flex items-center gap-2" onClick={() => setIsSidebarOpen(false)}>
-                        <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
+                        <figure className="">
+                            <img src="assets/images/dragan.png" alt="Ferix Software Logo" className="w-10 h-10" />
+                        </figure>
                         <span className="font-bold text-gray-800">FerixSoft</span>
                     </Link>
                     <button
@@ -210,7 +206,7 @@ export default function Header() {
                 </div>
 
                 {/* Sidebar Search (Mobile) */}
-                <div className="p-4 border-b border-gray-100">
+                <div className="px-4 border-b border-gray-100">
                     <div className="relative flex items-center bg-gray-100 rounded-lg px-3 py-2">
                         <Search className="w-4 h-4 text-gray-500" />
                         <input
@@ -255,30 +251,19 @@ export default function Header() {
 
                 {/* Sidebar Links */}
                 <nav className="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
-                    <Link href="/" onClick={() => setIsSidebarOpen(false)} className="px-4 py-3 rounded-lg text-blue-600 font-semibold bg-blue-50">
+                    <Link href="/" onClick={() => setIsSidebarOpen(false)} className="px-4 py-1 rounded-lg text-blue-600 font-semibold bg-blue-50">
                         Home
                     </Link>
-                    <Link href="#features" onClick={() => setIsSidebarOpen(false)} className="px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
+                    <Link href="#features" onClick={() => setIsSidebarOpen(false)} className="px-4 py-1 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
                         Features
                     </Link>
-                    <Link href="#screenshots" onClick={() => setIsSidebarOpen(false)} className="px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
+                    <Link href="#screenshots" onClick={() => setIsSidebarOpen(false)} className="px-4 py-1 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
                         Screenshots
                     </Link>
-                    <Link href="#download" onClick={() => setIsSidebarOpen(false)} className="px-4 py-3 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
+                    <Link href="#download" onClick={() => setIsSidebarOpen(false)} className="px-4 py-1 rounded-lg text-gray-600 font-medium hover:bg-gray-50">
                         Download
                     </Link>
                 </nav>
-
-                {/* Sidebar Footer (Download Button) */}
-                <div className="p-4 border-t border-gray-100">
-                    <a
-                        href="#download"
-                        className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl text-sm font-semibold transition shadow-md shadow-blue-200"
-                    >
-                        <Download size={18} />
-                        Download Now
-                    </a>
-                </div>
             </div>
         </header >
     );

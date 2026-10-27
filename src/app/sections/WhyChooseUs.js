@@ -67,7 +67,7 @@ export default function WhyChooseUs() {
                         Your Trusted Trading Software
                     </h2>
                     <p className="text-[12px] sm:text-[15px] text-gray-600 max-w-2xl mx-auto">
-                        We provide the best tools and environment for your trading journey. Here is why thousands of traders trust Anzal NextCandle Pro.
+                        We provide the best tools and environment for your trading journey. Here is why thousands of traders trust Ferix Software Pro.
                     </p>
                 </div>
 

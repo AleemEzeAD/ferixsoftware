@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, User } from "lucide-react";
+import { Lock, User, Eye, EyeOff } from "lucide-react";
 
 export default function AdminLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // Password show/hide state
     const router = useRouter();
 
     const handleLogin = async (e) => {
@@ -56,34 +57,42 @@ export default function AdminLogin() {
                 <form onSubmit={handleLogin} className="space-y-4">
                     {/* Username Input */}
                     <div className="relative">
-                        <User className="absolute left-3 top-3.5 text-gray-400" size={18} />
+                        <User className="absolute left-3 top-3.5 text-gray-500" size={18} />
                         <input
                             type="text"
                             placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="w-full pl-10 pr-4 py-3 rounded-lg bg-[#0f172a] text-white placeholder-gray-400 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         />
                     </div>
 
-                    {/* Password Input */}
+                    {/* Password Input with Show/Hide */}
                     <div className="relative">
-                        <Lock className="absolute left-3 top-3.5 text-gray-400" size={18} />
+                        <Lock className="absolute left-3 top-3.5 text-gray-500" size={18} />
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"} // Toggle type
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="w-full pl-10 pr-10 py-3 rounded-lg bg-[#0f172a] text-white placeholder-gray-400 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         />
+                        {/* Eye Icon */}
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-3.5 text-gray-500 hover:text-gray-300 transition cursor-pointer"
+                        >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
                     </div>
 
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="cursor-pointer w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full cursor-pointer flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isLoading ? (
                             <>

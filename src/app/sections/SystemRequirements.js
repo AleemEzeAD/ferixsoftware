@@ -2,7 +2,7 @@ import { Monitor, Cpu, HardDrive, Layers, CheckCircle2 } from "lucide-react";
 
 const requirementsData = {
     title: "System Requirements",
-    subtitle: "Minimum hardware and software requirements to run Anzal NextCandle Pro smoothly.",
+    subtitle: "Minimum hardware and software requirements to run Ferix Software Pro smoothly.",
     os: "Windows 10 / 11 (32-bit & 64-bit)",
     processor: "Intel Core i3 or equivalent (1.5 GHz+)",
     ram: "4 GB RAM (8 GB recommended)",

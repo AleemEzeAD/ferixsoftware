@@ -42,10 +42,10 @@ export default function Screenshots() {
     if (screenshots.length === 0) return null;
 
     return (
-        <section id="screenshots" className="w-full py-8 scroll-mt-24">
+        <section id="screenshots" className="w-full py-2 scroll-mt-24">
             <div className="container mx-auto max-w-[1200px] px-6">
 
-                <h2 className="mb-6 text-2xl font-extrabold text-[#0f172a] sm:text-3xl">
+                <h2 className="mb-2 text-2xl font-extrabold text-[#0f172a] sm:text-3xl">
                     Screenshots
                 </h2>
 

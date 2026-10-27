@@ -55,7 +55,7 @@ export default function HowToInstall() {
                             How to Install
                         </h2>
                         <p className="text-[12px] sm:text-[15px] text-gray-600 max-w-xl">
-                            Get started with Anzal NextCandle Pro in just a few simple steps. Watch the demo video below to see it in action.
+                            Get started with Ferix Software Pro in just a few simple steps. Watch the demo video below to see it in action.
                         </p>
                     </div>
 

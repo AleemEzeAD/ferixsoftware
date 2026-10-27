@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Trash2, Star, ShieldAlert, Image as ImageIcon, Plus, PlayCircle } from "lucide-react";
+import { Trash2, Star, ShieldAlert, Image as ImageIcon, Plus, PlayCircle, HardDrive, Upload } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +18,10 @@ export default function AdminPage() {
     // Video States
     const [videoUrl, setVideoUrl] = useState("");
     const [isSavingVideo, setIsSavingVideo] = useState(false);
+    // Zip States
+    const [zipFile, setZipFile] = useState(null);
+    const [isUploadingZip, setIsUploadingZip] = useState(false);
+    const [currentZipFile, setCurrentZipFile] = useState(null);
 
     const router = useRouter();
 
@@ -57,6 +61,17 @@ export default function AdminPage() {
             }
         } catch (error) {
             console.error("Video Fetch Error:", error);
+        }
+
+        // 4. Fetch Zip URL
+        try {
+            const dlRes = await fetch("/api/settings/download");
+            const dlData = await dlRes.json();
+            if (dlData.success && dlData.fileName) {
+                setCurrentZipFile(dlData.fileName);
+            }
+        } catch (error) {
+            console.error("Download Fetch Error:", error);
         }
 
         setIsLoading(false);
@@ -167,6 +182,33 @@ export default function AdminPage() {
         }
     };
 
+    // zip Upload
+    const handleZipUpload = async (e) => {
+        e.preventDefault();
+        if (!zipFile) return alert("Please select a zip file");
+        setIsUploadingZip(true);
+        try {
+            const formData = new FormData();
+            formData.append("file", zipFile);
+            const res = await fetch("/api/settings/download", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert("Zip uploaded successfully!");
+                setZipFile(null);
+                fetchData(); // Refresh URL
+            } else {
+                alert("Error: " + data.error);
+            }
+        } catch (error) {
+            alert("Failed to upload zip.");
+        } finally {
+            setIsUploadingZip(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-[#F8FAFC] py-10 px-6">
             <div className="max-w-6xl mx-auto">
@@ -233,7 +275,44 @@ export default function AdminPage() {
                         </button>
                     </form>
                 </div>
+                {/* ==== ZIP DOWNLOAD SETTINGS ==== */}
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8">
+                    <h2 className="text-lg font-bold text-[#0f172a] mb-4 flex items-center gap-2">
+                        <HardDrive size={20} className="text-blue-600" /> Manage Software Download (ZIP)
+                    </h2>
 
+                    <div className="mb-4 text-sm text-gray-600 flex items-center gap-2 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <strong className="text-gray-800">Current Download File:</strong>
+                        {currentZipFile ? (
+                            <a
+                                href={`/api/download-file?file=${currentZipFile}`}
+                                className="text-blue-600 underline font-medium hover:text-blue-800"
+                                download
+                            >
+                                {currentZipFile}
+                            </a>
+                        ) : (
+                            <span className="text-gray-500 italic">No file uploaded yet</span>
+                        )}
+                    </div>
+
+                    <form onSubmit={handleZipUpload} className="flex flex-col sm:flex-row gap-4 items-center">
+                        <input
+                            type="file"
+                            accept=".zip,.rar,.exe"
+                            onChange={(e) => setZipFile(e.target.files[0])}
+                            required
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                        />
+                        <button
+                            type="submit"
+                            disabled={isUploadingZip}
+                            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition disabled:opacity-70 cursor-pointer shrink-0"
+                        >
+                            <Upload size={16} /> {isUploadingZip ? "Uploading..." : "Upload ZIP"}
+                        </button>
+                    </form>
+                </div>
                 {/* ==== SCREENSHOTS SECTION ==== */}
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8">
                     <h2 className="text-lg font-bold text-[#0f172a] mb-4 flex items-center gap-2">

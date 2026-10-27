@@ -17,7 +17,7 @@ export default function AboutPage() {
             <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#eef5ff] via-[#f6faff] to-white py-6 md:py-10">
                 <div className="container mx-auto max-w-[1200px] px-6 text-center relative z-10">
                     <span className="inline-block rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-600 mb-2">
-                        About Anzal NextCandle Pro
+                        About Ferix Software Pro
                     </span>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0f172a] leading-tight tracking-tight mb-2">
                         Empowering Traders with <br className="hidden md:block" />
@@ -48,7 +48,7 @@ export default function AboutPage() {
                         <div className="order-1 lg:order-2">
                             <h2 className="text-3xl font-bold text-[#0f172a] mb-4">Our Story</h2>
                             <p className="text-gray-600 leading-relaxed mb-4">
-                                Anzal NextCandle Pro was born out of a simple frustration: the trading tools available were either too complex for beginners or too expensive for retail traders.
+                                Ferix Software Pro was born out of a simple frustration: the trading tools available were either too complex for beginners or too expensive for retail traders.
                             </p>
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 Our team of expert traders and software engineers came together to build a solution that bridges the gap between advanced AI algorithms and everyday trading. We wanted to create a dashboard that not only predicts market movements but also educates users along the way.
@@ -127,7 +127,7 @@ export default function AboutPage() {
                             Ready to Upgrade Your Trading?
                         </h2>
                         <p className="text-gray-400 mb-8 max-w-xl mx-auto relative z-10">
-                            Join thousands of successful traders using Anzal NextCandle Pro. Download now and start making smarter decisions.
+                            Join thousands of successful traders using Ferix Software Pro. Download now and start making smarter decisions.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
                             <a

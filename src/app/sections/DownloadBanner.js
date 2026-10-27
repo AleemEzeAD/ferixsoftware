@@ -1,17 +1,9 @@
-import {
-    Download,
-    ShieldCheck,
-    Star,
-    Monitor,
-    Tag,
-    HardDrive,
-    CalendarDays,
-    Shield
-} from "lucide-react";
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Download, ShieldCheck, Star, Monitor, Tag, HardDrive, CalendarDays, Shield } from "lucide-react";
 
 const appData = {
-    name: "Anzal NextCandle Pro",
+    name: "FerixSoftware Pro",
     badge: "Featured",
     description: "A professional and advanced trading dashboard for real-time market signals.",
     rating: "4.8",
@@ -23,6 +15,24 @@ const appData = {
 };
 
 export default function DownloadBanner() {
+    const [downloadFile, setDownloadFile] = useState(null);
+
+    useEffect(() => {
+        fetch("/api/settings/download")
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.fileName) {
+                    setDownloadFile(data.fileName);
+                }
+            })
+            .catch(err => console.error("Failed to fetch download URL:", err));
+    }, []);
+
+    // Download URL banayein (API Route ke through)
+    const downloadHref = downloadFile
+        ? `/api/download-file?file=${downloadFile}`
+        : "#";
+
     return (
         <section id="download" className="scroll-mt-20 w-full rounded-xl border border-blue-100 bg-gradient-to-r from-[#f0f7ff] to-[#e6f2ff] md:p-6 py-3 shadow-sm my-4">
             <div className="container mx-auto max-w-[1200px]">
@@ -31,11 +41,9 @@ export default function DownloadBanner() {
                     <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div className="flex items-start gap-2 sm:gap-5">
                             <div className="flex-shrink-0 rounded-2xl bg-white p-1 sm:p-3 shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100">
-                                <div className="flex w-10 md:h-16 h-10 md:w-16 items-center justify-center rounded-xl bg-gradient-to-br from-green-400 to-green-600 text-white shadow-inner">
-                                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                    </svg>
-                                </div>
+                                <figure className="">
+                                    <img src="assets/images/dragan.png" alt="Ferix Software Logo" className="w-10 h-10" />
+                                </figure>
                             </div>
 
                             {/* Text Info */}
@@ -93,7 +101,7 @@ export default function DownloadBanner() {
                         {/* Right Side: Download Button */}
                         <div className="flex flex-col items-center justify-center min-w-[220px]">
                             <a
-                                href="/assets/program/tradewithanzel.zip" download
+                                href={downloadHref}
                                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-3 py-2 sm:px-6 sm:py-3.5 text-white shadow-lg shadow-blue-600/30 transition hover:bg-[#1d4ed8]"
                             >
                                 <Download size={22} />
