@@ -93,7 +93,7 @@ export default function DownloadBanner() {
                         {/* Right Side: Download Button */}
                         <div className="flex flex-col items-center justify-center min-w-[220px]">
                             <a
-                                href="#download"
+                                href="/assets/program/tradewithanzel.zip" download
                                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-3 py-2 sm:px-6 sm:py-3.5 text-white shadow-lg shadow-blue-600/30 transition hover:bg-[#1d4ed8]"
                             >
                                 <Download size={22} />
