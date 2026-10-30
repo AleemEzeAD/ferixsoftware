@@ -85,10 +85,18 @@ export default function Reviews() {
         setIsSubmitting(true);
 
         try {
+            // FormData banayein
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("rating", rating);
+            formData.append("comment", comment);
+            if (imageFile) {
+                formData.append("file", imageFile); // Actual file bhejein
+            }
+
             const res = await fetch("/api/reviews", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, rating, comment, avatar: imagePreview }),
+                body: formData, // JSON ki jagah FormData
             });
 
             const data = await res.json();

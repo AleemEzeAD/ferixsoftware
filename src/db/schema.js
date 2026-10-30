@@ -5,7 +5,8 @@ export const reviews = mysqlTable("reviews", {
     name: varchar("name", { length: 255 }).notNull(),
     rating: int("rating").notNull(),
     comment: text("comment").notNull(),
-    avatar: text("avatar"), // Base64 image save karne ke liye
+    avatar: text("avatar"),
+    status: varchar("status", { length: 20 }).default("pending").notNull(), // NAYA COLUMN
     createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 export const admins = mysqlTable("admins", {
