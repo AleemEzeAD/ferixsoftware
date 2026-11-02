@@ -20,7 +20,6 @@ export async function GET() {
     }
 }
 
-// POST: Nayi file upload aur database mein save karein
 export async function POST(request) {
     try {
         const formData = await request.formData();
