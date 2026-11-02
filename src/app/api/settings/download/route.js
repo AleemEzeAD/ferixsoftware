@@ -37,7 +37,8 @@ export async function POST(request) {
         const fileName = `Ferix-Setup-${Date.now()}.zip`;
 
         // YAHAN CHANGE KIYA HAI: public/assets/program ki jagah uploads/program
-        const uploadDir = path.join(process.cwd(), "uploads/program");
+        const basePath = process.env.UPLOAD_BASE_PATH || "./uploads";
+        const uploadDir = path.join(basePath, "program");
 
         // Folder na ho toh bana dein
         try {

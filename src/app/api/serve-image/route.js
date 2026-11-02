@@ -11,13 +11,13 @@ export async function GET(request) {
             return NextResponse.json({ error: "File name required" }, { status: 400 });
         }
 
-        // Yahan path check karein: uploads/screenshots
-        const filePath = path.join(process.cwd(), "uploads/screenshots", fileName);
+        // Yahan bhi naya path
+        const basePath = process.env.UPLOAD_BASE_PATH || "./uploads";
+        const filePath = path.join(basePath, "screenshots", fileName);
 
         try {
             await fs.access(filePath);
         } catch {
-            console.error("File not found at:", filePath); // Debugging ke liye
             return NextResponse.json({ error: "Image not found" }, { status: 404 });
         }
 
@@ -34,7 +34,6 @@ export async function GET(request) {
             headers: { "Content-Type": contentType },
         });
     } catch (error) {
-        console.error("Serve Image Error:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

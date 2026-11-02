@@ -12,7 +12,8 @@ export async function GET(request) {
         }
 
         // YAHAN CHANGE KIYA HAI: public/assets/program ki jagah uploads/program
-        const filePath = path.join(process.cwd(), "uploads/program", fileName);
+        const basePath = process.env.UPLOAD_BASE_PATH || "./uploads";
+        const filePath = path.join(basePath, "program", fileName);
 
         // Check karein file mojood hai ya nahi
         try {

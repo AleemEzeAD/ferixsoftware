@@ -32,7 +32,8 @@ export async function POST(request) {
         const fileName = `${Date.now()}-${file.name.replace(/\s/g, '-')}`;
 
         // YAHAN CHANGE KIYA HAI: public hata kar uploads/screenshots kiya hai
-        const uploadDir = path.join(process.cwd(), "uploads/screenshots");
+        const basePath = process.env.UPLOAD_BASE_PATH || "./uploads";
+        const uploadDir = path.join(basePath, "screenshots");
 
         // Agar folder nahi hai toh bana dein
         try {
