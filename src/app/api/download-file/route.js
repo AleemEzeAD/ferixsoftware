@@ -11,8 +11,8 @@ export async function GET(request) {
             return NextResponse.json({ error: "File name required" }, { status: 400 });
         }
 
-        // File ka path banayein (public/assets/program ke andar)
-        const filePath = path.join(process.cwd(), "public/assets/program", fileName);
+        // YAHAN CHANGE KIYA HAI: public/assets/program ki jagah uploads/program
+        const filePath = path.join(process.cwd(), "uploads/program", fileName);
 
         // Check karein file mojood hai ya nahi
         try {

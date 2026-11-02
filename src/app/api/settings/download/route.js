@@ -36,8 +36,8 @@ export async function POST(request) {
         // File ka unique naam banayein
         const fileName = `Ferix-Setup-${Date.now()}.zip`;
 
-        // public/assets/program folder ka path
-        const uploadDir = path.join(process.cwd(), "public/assets/program");
+        // YAHAN CHANGE KIYA HAI: public/assets/program ki jagah uploads/program
+        const uploadDir = path.join(process.cwd(), "uploads/program");
 
         // Folder na ho toh bana dein
         try {
@@ -50,7 +50,7 @@ export async function POST(request) {
         const filePath = path.join(uploadDir, fileName);
         await fs.writeFile(filePath, buffer);
 
-        // Database mein save/update karein
+        // Database mein save/update karein (sirf file ka naam save hoga)
         const db = await connectDB();
         const existing = await db.select().from(settings).where(eq(settings.key, "downloadFile"));
 
