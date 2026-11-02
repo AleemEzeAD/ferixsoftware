@@ -22,3 +22,8 @@ coverage/
 .DS_Store
 git add .gitignore
 
+
+# User Uploads
+/uploads/
+/public/uploads/
+/public/assets/program/

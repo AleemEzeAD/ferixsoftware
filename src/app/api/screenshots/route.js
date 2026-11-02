@@ -31,8 +31,8 @@ export async function POST(request) {
         const buffer = Buffer.from(bytes);
         const fileName = `${Date.now()}-${file.name.replace(/\s/g, '-')}`;
 
-        // public/uploads folder ka path banayein
-        const uploadDir = path.join(process.cwd(), "public/uploads");
+        // YAHAN CHANGE KIYA HAI: public hata kar uploads/screenshots kiya hai
+        const uploadDir = path.join(process.cwd(), "uploads/screenshots");
 
         // Agar folder nahi hai toh bana dein
         try {
@@ -45,9 +45,9 @@ export async function POST(request) {
         const filePath = path.join(uploadDir, fileName);
         await fs.writeFile(filePath, buffer);
 
-        // Database mein path save karein
+        // Database mein path save karein (YAHAN CHANGE KIYA HAI)
         const db = await connectDB();
-        const imageUrl = `/uploads/${fileName}`;
+        const imageUrl = `/api/serve-image?file=${fileName}`;
 
         await db.insert(screenshots).values({ imageUrl });
 
