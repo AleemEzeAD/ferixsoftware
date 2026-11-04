@@ -10,9 +10,9 @@ const softwareData = {
     badge: "Pro Trading Platform",
     titleFirst: "Ferix",
     titleSecond: "Software Pro",
-    tagline: "Master the markets with real-time AI signals and precise analysis.",
+    tagline: "Get smarter trading signals and make more informed market decisions.",
     description:
-        "Ferix Software Pro is a powerful, professional trading dashboard that provides accurate market signals, live candle analysis, and seamless integration with your favorite platforms including Windows, macOS, and Web.",
+        "Ferix Software Pro is an advanced trading signals platform that delivers timely market insights and actionable trading signals, helping traders spot potential opportunities, analyze trends and make more confident trading decisions.",
     features: [
         { icon: TrendingUp, label: "Real-time", subLabel: "Signals" },
         { icon: Crosshair, label: "High", subLabel: "Accuracy" },
