@@ -1,28 +1,41 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "/lib/db";
+import { reviews } from "../../../db/schema";
+import { like, or, eq, and } from "drizzle-orm";
 
 export async function GET(request) {
     try {
-        const db = await connectDB();
-
-        // URL se search query nikalna (jaise: /api/search?q=ahmed)
         const { searchParams } = new URL(request.url);
         const query = searchParams.get("q");
 
-        // Agar query khali hai toh kuch return na karein
         if (!query) {
             return NextResponse.json({ success: true, data: [] }, { status: 200 });
         }
 
-        // Database mein search query chalana (LIKE query)
-        const [rows] = await db.query(
-            "SELECT id, name, comment FROM reviews WHERE name LIKE ? OR comment LIKE ? LIMIT 5",
-            [`%${query}%`, `%${query}%`]
-        );
+        const db = await connectDB();
 
-        return NextResponse.json({ success: true, data: rows }, { status: 200 });
+        // Drizzle ORM ke zariye search query
+        const results = await db.select({
+            id: reviews.id,
+            name: reviews.name,
+            comment: reviews.comment,
+        })
+            .from(reviews)
+            .where(
+                and(
+                    eq(reviews.status, "approved"), // Sirf approved reviews search hon
+                    or(
+                        like(reviews.name, `%${query}%`),
+                        like(reviews.comment, `%${query}%`)
+                    )
+                )
+            )
+            .limit(5);
+
+        return NextResponse.json({ success: true, data: results }, { status: 200 });
 
     } catch (error) {
+        console.error("Search Error:", error);
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }
