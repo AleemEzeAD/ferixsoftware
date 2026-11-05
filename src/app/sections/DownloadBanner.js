@@ -7,11 +7,11 @@ const appData = {
     badge: "Featured",
     description: "A professional and advanced trading dashboard for real-time market signals.",
     rating: "4.8",
-    reviews: "(124,567 reviews)",
-    version: "Version 3.0.20",
+    reviews: "(1,000+ reviews)",
+    version: "Version 3.2.52",
     size: "Size 40.5 MB",
     license: "License Free",
-    updated: "Updated April 15, 2025",
+    updated: "Updated November 01, 2026",
 };
 
 export default function DownloadBanner() {
