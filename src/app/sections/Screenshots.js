@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 export default function Screenshots() {
     const [screenshots, setScreenshots] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null); // Ab index state use kar rahe hain
     const scrollRef = useRef(null);
 
     useEffect(() => {
@@ -38,6 +38,19 @@ export default function Screenshots() {
         }
     };
 
+    // Viewer ke andar next/prev functions
+    const handleNext = () => {
+        if (selectedIndex < screenshots.length - 1) {
+            setSelectedIndex(selectedIndex + 1);
+        }
+    };
+
+    const handlePrev = () => {
+        if (selectedIndex > 0) {
+            setSelectedIndex(selectedIndex - 1);
+        }
+    };
+
     if (isLoading) return <div className="text-center py-10 text-gray-500">Loading screenshots...</div>;
     if (screenshots.length === 0) return null;
 
@@ -62,7 +75,7 @@ export default function Screenshots() {
                                 className="snap-center shrink-0 w-full md:w-[calc(50%-10px)] lg:w-[calc(33.33%-14px)]"
                             >
                                 <div
-                                    onClick={() => setSelectedImage(img.imageUrl)}
+                                    onClick={() => setSelectedIndex(index)} // Index set kar rahe hain
                                     className="cursor-pointer group relative overflow-hidden rounded-xl border-[6px] border-[#f0f7ff] bg-white shadow-sm transition hover:border-blue-200"
                                 >
                                     <div className="aspect-[16/10] w-full overflow-hidden rounded-md bg-gray-100">
@@ -94,24 +107,53 @@ export default function Screenshots() {
                 </div>
             </div>
 
-            {/* Lightbox */}
-            {selectedImage && (
-                <div
-                    className="fixed inset-0 z-[999] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
-                    onClick={() => setSelectedImage(null)}
-                >
+            {/* ==== NEW FULLSCREEN VIEWER ==== */}
+            {selectedIndex !== null && (
+                <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black/95 p-4 backdrop-blur-md">
+
+                    {/* Close Button */}
                     <button
-                        onClick={() => setSelectedImage(null)}
-                        className="absolute right-6 top-6 z-50 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition"
+                        onClick={() => setSelectedIndex(null)}
+                        className="cursor-pointer absolute right-2 top-4 sm:right-8 sm:top-8 z-50 rounded-full bg-white/10 sm:p-2 text-white hover:bg-white/20 transition"
                     >
                         <X size={32} />
                     </button>
-                    <img
-                        src={selectedImage}
-                        alt="Fullscreen Screenshot"
-                        className="max-h-[90vh] max-w-[95vw] rounded-lg object-contain shadow-2xl"
-                        onClick={(e) => e.stopPropagation()}
-                    />
+
+                    {/* Image Container */}
+                    <div className="relative w-full max-w-5xl flex items-center justify-center h-[50vh] sm:h-[80vh]">
+                        <img
+                            src={screenshots[selectedIndex].imageUrl}
+                            alt="Fullscreen Screenshot"
+                            className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
+                        />
+                    </div>
+
+                    {/* Bottom Controls */}
+                    <div className="mt-6 flex items-center justify-center gap-2 sm:gap-6 bg-white/10 px-3 sm:px-6 py-2 sm:py-3 rounded-full backdrop-blur-md border border-white/10">
+
+                        {/* Previous Button */}
+                        <button
+                            onClick={handlePrev}
+                            disabled={selectedIndex === 0}
+                            className="cursor-pointer sm:p-2 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 rounded-full transition"
+                        >
+                            <ChevronLeft size={28} />
+                        </button>
+
+                        {/* Counter */}
+                        <span className="text-white font-semibold text-lg min-w-[50px] text-center">
+                            {selectedIndex + 1} / {screenshots.length}
+                        </span>
+
+                        {/* Next Button */}
+                        <button
+                            onClick={handleNext}
+                            disabled={selectedIndex === screenshots.length - 1}
+                            className="cursor-pointer sm:p-2 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 rounded-full transition"
+                        >
+                            <ChevronRight size={28} />
+                        </button>
+                    </div>
                 </div>
             )}
         </section>
