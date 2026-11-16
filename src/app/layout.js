@@ -1,6 +1,7 @@
 import Header from '@/app/components/header/Header';
 import Footer from '@/app/components/footer/Footer';
 import SidebarAds from '@/app/components/SidebarAds/SidebarAds';
+import Floating from '@/app/components/floating/Whatsapp';
 import './globals.css';
 
 export const metadata = {
@@ -17,6 +18,7 @@ export const metadata = {
     'Trading Software',
     'AI Trading Signals',
     'Market Analysis',
+    'Trading Signals',
     'Trading Dashboard',
     'Forex Signals',
     'Crypto Trading',
@@ -67,6 +69,7 @@ export default function RootLayout({ children }) {
         </div>
 
         <Footer />
+        <Floating />
       </body>
     </html>
   );

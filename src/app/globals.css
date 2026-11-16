@@ -28,3 +28,23 @@ html {
     max-width: 1320px;
   }
 }
+/* whatsapp pulse animation started */
+@keyframes smoothPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-smooth-ping {
+  animation: smoothPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+/* whatsapp pulse animation ended */
