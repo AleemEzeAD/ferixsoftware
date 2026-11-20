@@ -31,6 +31,7 @@ export async function GET(request) {
             headers: {
                 "Content-Disposition": `attachment; filename="${fileName}"`,
                 "Content-Type": "application/zip",
+                "Content-Length": fileBuffer.length.toString(), // <-- YEH LINE ADD KI HAI
             },
         });
     } catch (error) {

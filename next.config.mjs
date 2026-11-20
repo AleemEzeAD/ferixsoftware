@@ -5,6 +5,7 @@ const nextConfig = {
   },
   experimental: {
     turbopackPluginRuntimeStrategy: "workerThreads",
+    agentUpgrade: "security",
   },
 };
 
